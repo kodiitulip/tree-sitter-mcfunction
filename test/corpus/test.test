@@ -1,0 +1,41 @@
+===
+coords
+===
+
+setblock ~ ~ ~ stone
+setblock ^ ^ ^ air
+setblock 1 1 1 cobblestone
+
+---
+
+    (source_file
+      (command
+        (command_name)
+        (argument
+          (coordinates))
+        (argument
+          (coordinates))
+        (argument
+          (coordinates))
+        (argument
+          (bare_word)))
+      (command
+        (command_name)
+        (argument
+          (coordinates))
+        (argument
+          (coordinates))
+        (argument
+          (coordinates))
+        (argument
+          (bare_word)))
+      (command
+        (command_name)
+        (argument
+          (number))
+        (argument
+          (number))
+        (argument
+          (number))
+        (argument
+          (bare_word))))

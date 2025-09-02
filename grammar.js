@@ -114,7 +114,7 @@ module.exports = grammar({
 
     number: _ => /[+-]?(?:\d+(?:\.\d+)?|\.\d+)(?:[eE][+-]?\d+)?/,
 
-    coordinates: $ => seq(/[\^\~]/, $.number),
+    coordinates: $ => prec.right(seq(/[\^\~]/, optional($.number))),
 
     range: $ =>
       prec.right(2, seq(optional($.number), "..", optional($.number))),

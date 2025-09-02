@@ -1,6 +1,5 @@
 (comments) @comment
-(coordinates
-  (number) @type) @type
+(coordinates) @number
 (number) @number
 (range) @number
 (string) @string
