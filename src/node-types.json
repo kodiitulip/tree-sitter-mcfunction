@@ -28,6 +28,10 @@
           "named": true
         },
         {
+          "type": "operators",
+          "named": true
+        },
+        {
           "type": "range",
           "named": true
         },
@@ -331,6 +335,10 @@
   },
   {
     "type": "number",
+    "named": true
+  },
+  {
+    "type": "operators",
     "named": true
   },
   {

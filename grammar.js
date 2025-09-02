@@ -38,6 +38,7 @@ module.exports = grammar({
       choice(
         $.resource_location,
         $.bare_word,
+        $.operators,
         $.coordinates,
         $.number,
         $.range,
@@ -46,6 +47,8 @@ module.exports = grammar({
         $.json_object,
         $.json_array,
       ),
+
+    operators: _ => /[=\-+/*<>]/,
 
     string: _ => /"(?:\.|(\\\")|[^\""\n])*"/,
 

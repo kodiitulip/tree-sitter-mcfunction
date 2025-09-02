@@ -134,6 +134,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "operators"
+        },
+        {
+          "type": "SYMBOL",
           "name": "coordinates"
         },
         {
@@ -161,6 +165,10 @@
           "name": "json_array"
         }
       ]
+    },
+    "operators": {
+      "type": "PATTERN",
+      "value": "[=\\-+/*<>]"
     },
     "string": {
       "type": "PATTERN",
