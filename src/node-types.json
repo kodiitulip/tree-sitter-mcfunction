@@ -254,9 +254,13 @@
         ]
       },
       "value": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "!",
+            "named": false
+          },
           {
             "type": "argument",
             "named": true
@@ -284,6 +288,10 @@
         }
       ]
     }
+  },
+  {
+    "type": "!",
+    "named": false
   },
   {
     "type": ",",

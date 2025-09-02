@@ -59,7 +59,11 @@ module.exports = grammar({
       ),
 
     selector_argument: $ =>
-      seq(field("key", $.command_name), "=", field("value", $.argument)),
+      seq(
+        field("key", $.command_name),
+        "=",
+        field("value", seq(optional("!"), $.argument)),
+      ),
 
     json_object: $ => seq("{", sepBy1(",", $.json_pair), "}"),
 
