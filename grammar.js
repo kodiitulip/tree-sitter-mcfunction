@@ -19,7 +19,7 @@ module.exports = grammar({
       seq(
         field("name", $.command_name),
         repeat(field("argument", $.argument)),
-        choice(field("run", $.run), token.immediate(/\n/)),
+        choice(field("run", $.run), token.immediate(choice("\n", "\0"))),
       ),
 
     run: _ => token("run"),
@@ -28,7 +28,7 @@ module.exports = grammar({
     command_name: _ => /[a-z_]+/,
 
     // Bare words = plain identifiers without ':' or special chars
-    bare_word: _ => /[a-zA-Z_\-][a-zA-Z0-9_\-\.]*/,
+    bare_word: _ => prec(-1, token(/[a-zA-Z_][a-zA-Z0-9_\-\.]*/)),
 
     // Resource locations: optional namespace, then path
     resource_location: _ =>
@@ -112,7 +112,7 @@ module.exports = grammar({
         "]",
       ),
 
-    number: _ => /[+-]?(?:\d+(?:\.\d+)?|\.\d+)(?:[eE][+-]?\d+)?/,
+    number: _ => prec(1, /[+-]?(?:\d+(?:\.\d+)?|\.\d+)(?:[eE][+-]?\d+)?/),
 
     coordinates: $ => prec.right(seq(/[\^\~]/, optional($.number))),
 

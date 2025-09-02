@@ -36,3 +36,51 @@ setblock 1 1 1 cobblestone
       (number))
     (argument
       (bare_word))))
+===
+range
+===
+execute if score @s fcyball.hspeed matches -10..-1 unless block ^ ^ ^-3 #minecraft:air run scoreboard players set @s fcyball.hspeed.tgt 0
+---
+(source_file
+  (command
+    name: (command_name)
+    argument: (argument
+      (bare_word))
+    argument: (argument
+      (bare_word))
+    argument: (argument
+      (selector))
+    argument: (argument
+      (bare_word))
+    argument: (argument
+      (bare_word))
+    argument: (argument
+      (range
+        (number)
+        (number)))
+    argument: (argument
+      (bare_word))
+    argument: (argument
+      (bare_word))
+    argument: (argument
+      (coordinates))
+    argument: (argument
+      (coordinates))
+    argument: (argument
+      (coordinates
+        (number)))
+    argument: (argument
+      (resource_location))
+    run: (run))
+  (command
+    name: (command_name)
+    argument: (argument
+      (bare_word))
+    argument: (argument
+      (bare_word))
+    argument: (argument
+      (selector))
+    argument: (argument
+      (bare_word))
+    argument: (argument
+      (number))))

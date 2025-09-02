@@ -74,8 +74,17 @@
             {
               "type": "IMMEDIATE_TOKEN",
               "content": {
-                "type": "PATTERN",
-                "value": "\\n"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "\n"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "\u0000"
+                  }
+                ]
               }
             }
           ]
@@ -94,8 +103,15 @@
       "value": "[a-z_]+"
     },
     "bare_word": {
-      "type": "PATTERN",
-      "value": "[a-zA-Z_\\-][a-zA-Z0-9_\\-\\.]*"
+      "type": "PREC",
+      "value": -1,
+      "content": {
+        "type": "TOKEN",
+        "content": {
+          "type": "PATTERN",
+          "value": "[a-zA-Z_][a-zA-Z0-9_\\-\\.]*"
+        }
+      }
     },
     "resource_location": {
       "type": "TOKEN",
@@ -473,8 +489,12 @@
       ]
     },
     "number": {
-      "type": "PATTERN",
-      "value": "[+-]?(?:\\d+(?:\\.\\d+)?|\\.\\d+)(?:[eE][+-]?\\d+)?"
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "PATTERN",
+        "value": "[+-]?(?:\\d+(?:\\.\\d+)?|\\.\\d+)(?:[eE][+-]?\\d+)?"
+      }
     },
     "coordinates": {
       "type": "PREC_RIGHT",
