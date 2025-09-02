@@ -12,6 +12,10 @@
           "named": true
         },
         {
+          "type": "boolean",
+          "named": true
+        },
+        {
           "type": "coordinates",
           "named": true
         },
@@ -120,6 +124,25 @@
       "required": false,
       "types": [
         {
+          "type": "json_array_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "json_array_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
           "type": "json_array",
           "named": true
         },
@@ -190,6 +213,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "boolean",
+            "named": true
+          },
           {
             "type": "json_array",
             "named": true
@@ -330,6 +357,10 @@
   {
     "type": "]",
     "named": false
+  },
+  {
+    "type": "boolean",
+    "named": true
   },
   {
     "type": "command_name",

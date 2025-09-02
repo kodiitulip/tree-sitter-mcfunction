@@ -36,6 +36,7 @@ module.exports = grammar({
 
     argument: $ =>
       choice(
+        $.boolean,
         $.resource_location,
         $.bare_word,
         $.operators,
@@ -77,6 +78,7 @@ module.exports = grammar({
         field(
           "value",
           choice(
+            $.boolean,
             $.number,
             $.string,
             $.resource_location,
@@ -90,27 +92,21 @@ module.exports = grammar({
     json_key: $ => choice($.string, /[a-zA-Z_][a-zA-Z0-9_-]*/),
 
     json_array: $ =>
-      prec(
-        1,
-        seq(
-          "[",
-          optional(
-            sepBy1(
-              ",",
-              choice(
-                $.number,
-                $.string,
-                $.resource_location,
-                $.json_object,
-                $.json_array,
-              ),
-            ),
-          ),
-          "]",
-        ),
+      prec(1, seq("[", optional(sepBy1(",", $.json_array_value)), "]")),
+
+    json_array_value: $ =>
+      choice(
+        $.boolean,
+        $.number,
+        $.string,
+        $.resource_location,
+        $.json_object,
+        $.json_array,
       ),
 
     number: _ => prec(1, /[+-]?(?:\d+(?:\.\d+)?|\.\d+)(?:[eE][+-]?\d+)?/),
+
+    boolean: _ => /true|True|false|False|1b|0b/,
 
     coordinates: $ => prec.right(seq(/[\^\~]/, optional($.number))),
 

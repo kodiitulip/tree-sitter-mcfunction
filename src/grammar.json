@@ -142,6 +142,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "boolean"
+        },
+        {
+          "type": "SYMBOL",
           "name": "resource_location"
         },
         {
@@ -364,6 +368,10 @@
             "members": [
               {
                 "type": "SYMBOL",
+                "name": "boolean"
+              },
+              {
+                "type": "SYMBOL",
                 "name": "number"
               },
               {
@@ -417,29 +425,8 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "number"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "string"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "resource_location"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "json_object"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "json_array"
-                      }
-                    ]
+                    "type": "SYMBOL",
+                    "name": "json_array_value"
                   },
                   {
                     "type": "REPEAT",
@@ -451,29 +438,8 @@
                           "value": ","
                         },
                         {
-                          "type": "CHOICE",
-                          "members": [
-                            {
-                              "type": "SYMBOL",
-                              "name": "number"
-                            },
-                            {
-                              "type": "SYMBOL",
-                              "name": "string"
-                            },
-                            {
-                              "type": "SYMBOL",
-                              "name": "resource_location"
-                            },
-                            {
-                              "type": "SYMBOL",
-                              "name": "json_object"
-                            },
-                            {
-                              "type": "SYMBOL",
-                              "name": "json_array"
-                            }
-                          ]
+                          "type": "SYMBOL",
+                          "name": "json_array_value"
                         }
                       ]
                     }
@@ -492,6 +458,35 @@
         ]
       }
     },
+    "json_array_value": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "boolean"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "resource_location"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "json_object"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "json_array"
+        }
+      ]
+    },
     "number": {
       "type": "PREC",
       "value": 1,
@@ -499,6 +494,10 @@
         "type": "PATTERN",
         "value": "[+-]?(?:\\d+(?:\\.\\d+)?|\\.\\d+)(?:[eE][+-]?\\d+)?"
       }
+    },
+    "boolean": {
+      "type": "PATTERN",
+      "value": "true|True|false|False|1b|0b"
     },
     "coordinates": {
       "type": "PREC_RIGHT",

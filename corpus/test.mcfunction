@@ -18,4 +18,6 @@ execute as @s at @s summon minecraft:villager run setblock ~1 ~1 ~1 #minecraft:g
 
 execute if score @s pain.bell match 1..5 run return run say hu
 
+tellraw @a {}
+
 scoreboard players add #a main 1
