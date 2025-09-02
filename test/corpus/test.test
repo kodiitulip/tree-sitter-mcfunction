@@ -84,3 +84,8 @@ execute if score @s fcyball.hspeed matches -10..-1 unless block ^ ^ ^-3 #minecra
       (bare_word))
     argument: (argument
       (number))))
+===
+arrays
+===
+tellraw @s {}
+---

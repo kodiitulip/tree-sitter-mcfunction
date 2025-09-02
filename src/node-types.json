@@ -120,10 +120,6 @@
       "required": false,
       "types": [
         {
-          "type": "bare_word",
-          "named": true
-        },
-        {
           "type": "json_array",
           "named": true
         },
@@ -167,7 +163,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "json_pair",

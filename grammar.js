@@ -43,9 +43,9 @@ module.exports = grammar({
         $.number,
         $.range,
         $.string,
+        $.json_array,
         $.selector,
         $.json_object,
-        $.json_array,
       ),
 
     operators: _ => /[=\-+/*<>]/,
@@ -68,7 +68,7 @@ module.exports = grammar({
         field("value", seq(optional("!"), $.argument)),
       ),
 
-    json_object: $ => seq("{", sepBy1(",", $.json_pair), "}"),
+    json_object: $ => seq("{", optional(sepBy1(",", $.json_pair)), "}"),
 
     json_pair: $ =>
       seq(
@@ -87,29 +87,27 @@ module.exports = grammar({
       ),
 
     // JSON-style keys
-    json_key: $ =>
-      choice(
-        $.string, // quoted strings
-        /[a-zA-Z_][a-zA-Z0-9_-]*/, // unquoted identifiers (for convenience)
-      ),
+    json_key: $ => choice($.string, /[a-zA-Z_][a-zA-Z0-9_-]*/),
 
     json_array: $ =>
-      seq(
-        "[",
-        optional(
-          sepBy1(
-            ",",
-            choice(
-              $.number,
-              $.string,
-              $.resource_location,
-              $.bare_word,
-              $.json_object,
-              $.json_array,
+      prec(
+        1,
+        seq(
+          "[",
+          optional(
+            sepBy1(
+              ",",
+              choice(
+                $.number,
+                $.string,
+                $.resource_location,
+                $.json_object,
+                $.json_array,
+              ),
             ),
           ),
+          "]",
         ),
-        "]",
       ),
 
     number: _ => prec(1, /[+-]?(?:\d+(?:\.\d+)?|\.\d+)(?:[eE][+-]?\d+)?/),

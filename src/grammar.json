@@ -170,15 +170,15 @@
         },
         {
           "type": "SYMBOL",
+          "name": "json_array"
+        },
+        {
+          "type": "SYMBOL",
           "name": "selector"
         },
         {
           "type": "SYMBOL",
           "name": "json_object"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "json_array"
         }
       ]
     },
@@ -303,27 +303,35 @@
           "value": "{"
         },
         {
-          "type": "SEQ",
+          "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "json_pair"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "json_pair"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": ","
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "json_pair"
+                      }
+                    ]
+                  }
+                }
+              ]
             },
             {
-              "type": "REPEAT",
-              "content": {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": ","
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "json_pair"
-                  }
-                ]
-              }
+              "type": "BLANK"
             }
           ]
         },
@@ -393,100 +401,96 @@
       ]
     },
     "json_array": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "["
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "number"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "string"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "resource_location"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "bare_word"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "json_object"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "json_array"
-                    }
-                  ]
-                },
-                {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SEQ",
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "["
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "CHOICE",
                     "members": [
                       {
-                        "type": "STRING",
-                        "value": ","
+                        "type": "SYMBOL",
+                        "name": "number"
                       },
                       {
-                        "type": "CHOICE",
-                        "members": [
-                          {
-                            "type": "SYMBOL",
-                            "name": "number"
-                          },
-                          {
-                            "type": "SYMBOL",
-                            "name": "string"
-                          },
-                          {
-                            "type": "SYMBOL",
-                            "name": "resource_location"
-                          },
-                          {
-                            "type": "SYMBOL",
-                            "name": "bare_word"
-                          },
-                          {
-                            "type": "SYMBOL",
-                            "name": "json_object"
-                          },
-                          {
-                            "type": "SYMBOL",
-                            "name": "json_array"
-                          }
-                        ]
+                        "type": "SYMBOL",
+                        "name": "string"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "resource_location"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "json_object"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "json_array"
                       }
                     ]
+                  },
+                  {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "STRING",
+                          "value": ","
+                        },
+                        {
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "SYMBOL",
+                              "name": "number"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "string"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "resource_location"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "json_object"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "json_array"
+                            }
+                          ]
+                        }
+                      ]
+                    }
                   }
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "]"
-        }
-      ]
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "STRING",
+            "value": "]"
+          }
+        ]
+      }
     },
     "number": {
       "type": "PREC",
